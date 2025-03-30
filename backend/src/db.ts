@@ -1,7 +1,7 @@
 import mongoose, {Schema,model,connect} from 'mongoose'
 import { unescapeLeadingUnderscores } from 'typescript';
 
-connect('mongodb+srv://Aadithhya:Venkat%40123@cluster0.7lvh3qz.mongodb.net/Brain');
+connect('mongo_url');
 
 const userSchema=new Schema({
     username:String,
