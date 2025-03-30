@@ -1,1 +1,1 @@
-export const jwt_pass="1234";
+export const jwt_pass="your_jwt_passcode";
