@@ -29,22 +29,28 @@ export function  Signin()
 
         
     }
-    return<div className="inset-0 bg-[#fafafa] h-screen w-screen flex justify-center items-center">
-       <div className="w-90 h-80 bg-white border-2 rounded-lg border-gray-300">
-       <div className="flex-col justify-center">
-        <div className="flex justify-center">
-        <Title text="Signin" size="md" bold="yes" color="slate" />
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#FDF6F0] font-sans">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-0 overflow-hidden border border-[#F3F4F6]">
+          <div className="bg-gradient-to-r from-[#7C3AED] via-[#F472B6] to-[#FBBF24] h-3 w-full mb-0" />
+          <div className="p-10 flex flex-col gap-7">
+            <div className="flex flex-col items-center mb-2">
+              <Title text="Sign in to FeedVault" size="lg" bold="yes" color="slate" />
+              <div className="text-[#F472B6] text-sm mt-1 font-semibold">Welcome back, explorer!</div>
+            </div>
+            <div className="border-b border-[#F3F4F6] mb-4" />
+            <Inputbox reference={usernameRef} placeholder="Username" />
+            <Inputbox reference={passwordRef} placeholder="Password" />
+            <Button size="md" text="Sign in" onClick={signin} variant="primary" />
+            <div className="w-full text-center mt-2 text-xs text-[#7C3AED]">
+              New user?{' '}
+              <button type="button" className="underline font-semibold hover:text-[#F472B6] transition bg-transparent border-none outline-none" onClick={() => navigate('/signup')}>
+                Signup
+              </button>
+            </div>
+          </div>
         </div>
-        <Inputbox reference={usernameRef} placeholder="Enter Username"/>
-        <Inputbox reference={passwordRef} placeholder="Enter password"/>
-        <div className="flex justify-center p-4">
-        
-        <Button size="md" text="Signin" onClick={signin} variant="primary"/>
-        </div>
-
-        </div>
-       </div>
-
-    </div>
+      </div>
+    );
 
 }

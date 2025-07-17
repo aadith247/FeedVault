@@ -1,7 +1,7 @@
-
 //UI libraries
 
 import { ReactElement } from "react"
+import { motion } from 'framer-motion';
 
 interface buttonProps // exporting this type to outside...
 {
@@ -14,8 +14,8 @@ interface buttonProps // exporting this type to outside...
     onClick?:()=>void }
 
 let variantStyles={
-    "primary" : "bg-[#5046e4] text-[#e0e7fe]",
-    "secondary" : "bg-[#e0e7fe] text-[#5046e4]"
+    "primary" : "bg-[#7C3AED] text-white hover:bg-[#F472B6] font-bold",
+    "secondary" : "bg-[#F472B6] text-white hover:bg-[#7C3AED] font-bold"
 }
 
 let sizeStyles={
@@ -27,9 +27,14 @@ let defaultStyles="rounded-md  text-center cursor-pointer";
 
 //   <Button variant="primary" size="md" onClick={} text="click me" startIcon="component"> </Button>
 export const Button = (props:buttonProps)=>{
-    return <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${sizeStyles[props.size]} ${defaultStyles}`}>
-   
-            <div className="flex justify-center items-center">
+    return <motion.button
+        onClick={props.onClick}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+        className={`relative overflow-hidden ${variantStyles[props.variant]} ${sizeStyles[props.size]} rounded-xl shadow-md focus:ring-2 focus:ring-[#FBBF24] transition-all duration-200 ${defaultStyles}`}
+    >
+        <span className="absolute inset-0 pointer-events-none" />
+        <div className="flex justify-center items-center">
             <div className=" pl-2">
             {props.startIcon}
             </div>
@@ -39,8 +44,6 @@ export const Button = (props:buttonProps)=>{
             <div className="pl-2">
                 {props.endIcon}
             </div>
-            </div>
-
-      
-   </button>
+        </div>
+    </motion.button>
 }

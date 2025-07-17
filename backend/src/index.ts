@@ -11,6 +11,7 @@ const app=express();
 import {random} from 'secrets.js-grempe';
 import { jwt_pass } from './config';
 import { ParameterDeclaration } from 'typescript';
+import axios from 'axios';
 
 app.use(cors());
 app.use(express.json()); // export the entire thing, we need to import the specific by destructuring
@@ -94,15 +95,14 @@ app.post("/api/v1/content",userMiddleware,async (req,res)=>{ // userId comes fro
     const title=req.body.title;
     const link=req.body.link;
     const type=req.body.type;
+    const tags=Array.isArray(req.body.tags) ? req.body.tags : [];
     await contentModel.create({
         title:title,
         link:link,
         type:type,
         //@ts-ignore
         userId:req.userId,
-        tags:[]
-
-
+        tags:tags
     });
     res.json({
         message : "content added"
@@ -178,6 +178,45 @@ app.get("/api/v1/brain/:shareLink",async (req,res)=>{
         })
      }
 
+});
+
+app.post("/api/v1/summarize", userMiddleware, async (req, res) => {
+    const topic = req.body.topic;
+    if (!topic) {
+        res.status(400).json({ message: "Topic is required" });
+        return;
+    }
+    try {
+        //@ts-ignore
+        const userId = req.userId;
+        const posts = await contentModel.find({
+            userId,
+            $or: [
+                { title: { $regex: topic, $options: 'i' } },
+                { type: { $regex: topic, $options: 'i' } }
+            ]
+        });
+        if (!posts.length) {
+            res.status(404).json({ message: "No posts found for this topic" });
+            return;
+        }
+        const text = posts.map(post => `Title: ${post.title}\nType: ${post.type}\nLink: ${post.link}`).join("\n\n");
+        const apiKey = process.env.GEMINI_API_KEY;
+        if (!apiKey) {
+            res.status(500).json({ message: "Gemini API key not set" });
+            return;
+        }
+        const geminiRes = await axios.post(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey,
+            {
+                contents: [{ parts: [{ text: `Summarize the following posts about '${topic}':\n${text}` }] }]
+            }
+        );
+        const summary = (geminiRes.data as any).candidates?.[0]?.content?.parts?.[0]?.text || "No summary generated.";
+        res.json({ summary });
+    } catch (e: any) {
+        res.status(500).json({ message: "Failed to summarize posts", error: e.message });
+    }
 });
 
 app.listen(3001);

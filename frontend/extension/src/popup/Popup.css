@@ -1,0 +1,148 @@
+body {
+  background: #F9FAFB;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+}
+
+#root {
+  min-width: 320px;
+  min-height: 350px;
+}
+
+input, button {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #f3f4f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0e7fe;
+  border-radius: 3px;
+}
+
+/* Card style for popup */
+.w-80 {
+  width: 20rem;
+}
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+.shadow-xl {
+  box-shadow: 0 12px 32px rgba(124,58,237,0.15);
+}
+.border {
+  border-width: 1px;
+}
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, #7C3AED, #F472B6, #FBBF24);
+}
+
+/* FeedVault button styles (match website) */
+.fv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.10);
+  transition: all 0.18s cubic-bezier(.4,0,.2,1);
+  outline: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.fv-btn:focus {
+  box-shadow: 0 0 0 2px #FBBF24;
+}
+.fv-btn-primary {
+  background: linear-gradient(90deg, #7C3AED 0%, #F472B6 60%, #FBBF24 100%);
+  color: #fff;
+}
+.fv-btn-primary:hover {
+  background: linear-gradient(90deg, #F472B6 0%, #7C3AED 100%);
+  transform: scale(1.04);
+}
+.fv-btn-primary:active {
+  transform: scale(0.97);
+}
+.fv-btn-secondary {
+  background: #fff;
+  color: #7C3AED;
+  border: 2px solid #7C3AED;
+}
+.fv-btn-secondary:hover {
+  background: #F3F4F6;
+  color: #7C3AED;
+  transform: scale(1.04);
+}
+.fv-btn-secondary:active {
+  transform: scale(0.97);
+}
+.fv-btn-lg {
+  font-size: 1.125rem;
+  padding: 0.85rem 0;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Modern chip-input tag box */
+.fv-tagbox {
+  background: #F9FAFB;
+  border-radius: 1.25rem;
+  border: 1.5px solid #F3F4F6;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.06);
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), border-color 0.18s cubic-bezier(.4,0,.2,1);
+}
+.fv-tagbox:focus-within {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 2px #7C3AED33;
+}
+.fv-tagbox input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  min-width: 6ch;
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+  margin-top: 2px;
+}
+.fv-tagbox input::placeholder {
+  color: #a3a3a3;
+  opacity: 1;
+}
+.fv-tagbox span {
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Modern FeedVault input styles */
+.fv-input {
+  width: 100%;
+  font-size: 1.08rem;
+  padding: 0.95rem 1.1rem;
+  border-radius: 0.85rem;
+  border: 1.5px solid #F3F4F6;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.06);
+  margin-bottom: 0.7rem;
+  outline: none;
+  transition: border-color 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+}
+.fv-input:focus {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 2px #7C3AED33;
+}
+.fv-input::placeholder {
+  color: #a3a3a3;
+  opacity: 1;
+} 
