@@ -17,6 +17,6 @@ FeedVault is a web application built using the MERN stack (MongoDB, Express, Rea
 - **Backend**: Node.js, Express.js, TypeScript
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
-- **APIs**: YouTube API, Twitter API
+
 - **Other Tools**: Bcrypt (for password hashing), dotenv (for environment variables), etc.
 
